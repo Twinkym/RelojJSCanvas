@@ -17,11 +17,11 @@ $(document).ready(function () {
       this.format_string = function (dat) {
         d = dat;
         hora = d.getHours();
-        minuto = d.getMinutes();
-        if (minuto <= 9) minuto = "0" + minuto;
-        segundo = d.getSeconds();
-        if (segundo <= 9) segundo = "0" + segundo;
-        return hora + ":" + minuto + ":" + segundo;
+        minut = d.getMinutes();
+        if (minut <= 9) minut = "0" + minut;
+        segon = d.getSeconds();
+        if (segon <= 9) segon = "0" + segon;
+        return hora + ":" + minut + ":" + segon;
 
         $(document).bind("tiempo", tick);
       };
@@ -49,6 +49,20 @@ $(document).ready(function () {
         as = (s * 360) / 60;
         neteja();
         // console.info(h,m,s, ">>>", ah, am, as)
+        t.hora = pinta_agulla(50, ah);
+        t.minuto = pinta_agulla(60, am);
+        t.segon = pinta_agulla(70, as);
+        t.hora.attr({ "stroke-width": 7, stroke: "#ac360b" });
+        t.minut.attr({ "stroke-width": 5, stroke: "#a0573c" });
+        t.segon.attr({ "stroke-width": 3, stroke: "#666666" });
+      };
+      let neteja = function () {
+        if (t.hora) {
+          t.hora.remove();
+          if (t.minut) {
+            t.minut.remove();
+          }
+        }
       };
     };
   }
